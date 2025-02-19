@@ -8,7 +8,7 @@
             text-align: center;
             margin: 20px;
         }
-        img {OPI.jpg
+        img {
             width: 500px; /* Increased logo size */
             margin-bottom: 10px;
         }
@@ -87,14 +87,27 @@
             let incisalShade = document.getElementById("incisal").value.trim().toUpperCase();
             let bodyShade = document.getElementById("body").value.trim().toUpperCase();
 
+            console.log("Input Incisal Shade:", incisalShade);
+            console.log("Input Body Shade:", bodyShade);
+
             // Convert RX shade to Puck shade if found
-            let convertedShade = shadeConversion[incisalShade] || (incisalShade !== "" ? incisalShade : "");
+            let convertedShade = shadeConversion[incisalShade];
+
+            console.log("Converted Shade:", convertedShade);
 
             // Final shade logic:
-            // - If incisal shade is entered, use the converted value
-            // - If incisal shade is empty, fallback to body shade
-            // - If both are empty, display "No shade entered"
-            let finalShade = convertedShade !== "" ? convertedShade : (bodyShade !== "" ? bodyShade : "No shade entered");
+            let finalShade;
+            if (convertedShade) {
+                finalShade = convertedShade;  // If incisal shade is mapped, use it
+            } else if (incisalShade !== "") {
+                finalShade = incisalShade;  // If incisal shade is not in the list, keep user input
+            } else if (bodyShade !== "") {
+                finalShade = bodyShade;  // If incisal is empty, use body shade
+            } else {
+                finalShade = "No shade entered";  // If both are empty
+            }
+
+            console.log("Final Selected Shade:", finalShade);
 
             // Display the selected shade
             document.getElementById("output").innerText = finalShade;
