@@ -58,8 +58,9 @@
     <p>Selected Shade: <span id="output"></span></p>
 
     <script>
-        // RX Shade to Puck Shade conversion mapping (Includes Bioform & Chromascope)
+        // Full RX Shade to Puck Shade conversion mapping (Vita, Bioform & Chromascope included)
         const shadeConversion = {
+            // Vita Classic, Vita 3D Master, Ivoclar Bleach
             "OM1": "OM1", "OM2": "OM2", "OM3": "OM3", "1M1": "OM3", "1M2": "A1",
             "2L1.5": "B1", "2L2.5": "B3", "2M1": "A1", "2M2": "A2", "2M3": "B3",
             "2R1.5": "A2", "2R2.5": "A3", "3L1.5": "C2", "3L2.5": "B3", "3M1": "D2",
@@ -69,4 +70,9 @@
             "020": "OM2", "030": "OM3", "040": "OM3", "BL1": "OM1", "BL2": "OM2",
             "BL3": "OM3", "BL4": "OM3",
             // Chromascope Shades
-            "01/110": "A1", "1A/120":
+            "01/110": "A1", "1A/120": "A2", "2A/130": "A2", "1C/140": "A3", "2B/210": "A3",
+            "1D/220": "A3", "1E/230": "A3", "2C/240": "A3.5", "3A/310": "B3", "5B/320": "B4",
+            "2E/330": "B4", "3E/340": "A4", "4A/410": "D3", "6B/420": "C2", "4B/430": "C3",
+            "6C/440": "C3", "6D/510": "C3", "4C/520": "C3", "3C/530": "A4", "4D/540": "A4",
+            // Bioform Shades
+            "B51": "A1", "B
