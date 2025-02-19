@@ -41,8 +41,8 @@
 </head>
 <body>
 
-    <!-- Company Logo -->
-    <img src="OPI.jpeg" alt="Company Logo">
+    <!-- Company Logo (Ensure the file is in the same directory as index.html) -->
+    <img src="OPI.jpeg" alt="Company Logo" onerror="this.onerror=null; this.src='default-logo.png';">
 
     <!-- Main Title and Subtitle -->
     <h1>Multiple Shade Selection for Zirconia Only</h1>
@@ -97,12 +97,12 @@
 
             // Final shade logic:
             let finalShade;
-            if (convertedShade) {
+            if (incisalShade === "" && bodyShade !== "") {
+                finalShade = bodyShade;  // If no incisal shade, use mid/body shade
+            } else if (convertedShade) {
                 finalShade = convertedShade;  // If incisal shade is mapped, use it
             } else if (incisalShade !== "") {
                 finalShade = incisalShade;  // If incisal shade is not in the list, keep user input
-            } else if (bodyShade !== "") {
-                finalShade = bodyShade;  // If incisal is empty, use body shade
             } else {
                 finalShade = "No shade entered";  // If both are empty
             }
