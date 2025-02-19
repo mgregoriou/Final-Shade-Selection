@@ -41,8 +41,8 @@
 </head>
 <body>
 
-    <!-- Company Logo (Ensure the file is in the same directory as index.html) -->
-    <img src="OPI.jpeg" alt="Company Logo" onerror="this.onerror=null; this.src='default-logo.png';">
+    <!-- Corrected Company Logo Reference -->
+    <img src="OPI.jpg" alt="Company Logo" onerror="this.onerror=null; this.src='default-logo.png';">
 
     <!-- Main Title and Subtitle -->
     <h1>Multiple Shade Selection for Zirconia Only</h1>
@@ -58,7 +58,7 @@
     <p>Selected Shade: <span id="output"></span></p>
 
     <script>
-        // RX Shade to Puck Shade conversion mapping (Includes Incisal, Mid/Body, and Gingival)
+        // RX Shade to Puck Shade conversion mapping
         const shadeConversion = {
             // Vita Classic, Vita 3D Master, Bleach Shades
             "OM1": "OM1", "OM2": "OM2", "OM3": "OM3", "1M1": "OM3", "1M2": "A1",
