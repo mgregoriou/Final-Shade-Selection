@@ -8,7 +8,7 @@
             text-align: center;
             margin: 20px;
         }
-        img {
+        img {OPI.jpg
             width: 500px; /* Increased logo size */
             margin-bottom: 10px;
         }
@@ -58,9 +58,9 @@
     <p>Selected Shade: <span id="output"></span></p>
 
     <script>
-        // Full RX Shade to Puck Shade conversion mapping (Vita, Bioform & Chromascope included)
+        // Full RX Shade to Puck Shade conversion mapping (Including Bleach, 3D Master, Chromascope, Bioform)
         const shadeConversion = {
-            // Vita Classic, Vita 3D Master, Ivoclar Bleach
+            // Vita Classic, Vita 3D Master, Bleach Shades
             "OM1": "OM1", "OM2": "OM2", "OM3": "OM3", "1M1": "OM3", "1M2": "A1",
             "2L1.5": "B1", "2L2.5": "B3", "2M1": "A1", "2M2": "A2", "2M3": "B3",
             "2R1.5": "A2", "2R2.5": "A3", "3L1.5": "C2", "3L2.5": "B3", "3M1": "D2",
@@ -75,4 +75,31 @@
             "2E/330": "B4", "3E/340": "A4", "4A/410": "D3", "6B/420": "C2", "4B/430": "C3",
             "6C/440": "C3", "6D/510": "C3", "4C/520": "C3", "3C/530": "A4", "4D/540": "A4",
             // Bioform Shades
-            "B51": "A1", "B
+            "B51": "A1", "B52": "B2", "B53": "A2", "B54": "A3", "B55": "B3",
+            "B56": "A3", "B59": "A1", "B62": "A1", "B63": "A2", "B65": "A3",
+            "B66": "A2", "B67": "B3", "B69": "D4", "B77": "C2", "B81": "C3",
+            "B83": "A3.5", "B84": "A4", "B85": "B4", "B91": "C1", "B92": "D2",
+            "B94": "C2", "B95": "C2", "B96": "C4"
+        };
+
+        function displayShade() {
+            // Get input values
+            let incisalShade = document.getElementById("incisal").value.trim().toUpperCase();
+            let bodyShade = document.getElementById("body").value.trim().toUpperCase();
+
+            // Convert RX shade to Puck shade if found
+            let convertedShade = shadeConversion[incisalShade] || (incisalShade !== "" ? incisalShade : "");
+
+            // Final shade logic:
+            // - If incisal shade is entered, use the converted value
+            // - If incisal shade is empty, fallback to body shade
+            // - If both are empty, display "No shade entered"
+            let finalShade = convertedShade !== "" ? convertedShade : (bodyShade !== "" ? bodyShade : "No shade entered");
+
+            // Display the selected shade
+            document.getElementById("output").innerText = finalShade;
+        }
+    </script>
+
+</body>
+</html>
