@@ -58,7 +58,7 @@
     <p>Selected Shade: <span id="output"></span></p>
 
     <script>
-        // Full RX Shade to Puck Shade conversion mapping (Including Bleach, 3D Master, Chromascope, Bioform)
+        // RX Shade to Puck Shade conversion mapping (Includes Incisal, Mid/Body, and Gingival)
         const shadeConversion = {
             // Vita Classic, Vita 3D Master, Bleach Shades
             "OM1": "OM1", "OM2": "OM2", "OM3": "OM3", "1M1": "OM3", "1M2": "A1",
@@ -86,25 +86,31 @@
             // Get input values
             let incisalShade = document.getElementById("incisal").value.trim().toUpperCase();
             let bodyShade = document.getElementById("body").value.trim().toUpperCase();
+            let gingivalShade = document.getElementById("gingival").value.trim().toUpperCase();
 
             console.log("Input Incisal Shade:", incisalShade);
             console.log("Input Body Shade:", bodyShade);
+            console.log("Input Gingival Shade:", gingivalShade);
 
-            // Convert RX shade to Puck shade if found
-            let convertedShade = shadeConversion[incisalShade];
+            // Convert RX shades to Puck shades
+            let convertedIncisal = shadeConversion[incisalShade] || (incisalShade !== "" ? incisalShade : "");
+            let convertedBody = shadeConversion[bodyShade] || (bodyShade !== "" ? bodyShade : "");
+            let convertedGingival = shadeConversion[gingivalShade] || (gingivalShade !== "" ? gingivalShade : "");
 
-            console.log("Converted Shade:", convertedShade);
+            console.log("Converted Incisal Shade:", convertedIncisal);
+            console.log("Converted Body Shade:", convertedBody);
+            console.log("Converted Gingival Shade:", convertedGingival);
 
             // Final shade logic:
             let finalShade;
-            if (incisalShade === "" && bodyShade !== "") {
-                finalShade = bodyShade;  // If no incisal shade, use mid/body shade
-            } else if (convertedShade) {
-                finalShade = convertedShade;  // If incisal shade is mapped, use it
-            } else if (incisalShade !== "") {
-                finalShade = incisalShade;  // If incisal shade is not in the list, keep user input
+            if (convertedIncisal !== "") {
+                finalShade = convertedIncisal;  // Use converted incisal shade if available
+            } else if (convertedBody !== "") {
+                finalShade = convertedBody;  // If no incisal, use converted mid/body shade
+            } else if (convertedGingival !== "") {
+                finalShade = convertedGingival;  // If no incisal/mid, use converted gingival shade
             } else {
-                finalShade = "No shade entered";  // If both are empty
+                finalShade = "No shade entered";  // If all are empty
             }
 
             console.log("Final Selected Shade:", finalShade);
